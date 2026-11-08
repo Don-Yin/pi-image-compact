@@ -8,8 +8,6 @@ Keeps image-heavy [Pi](https://github.com/earendil-works/pi) sessions small, so 
 
 <p align="center"><img src="assets/loop.gif" alt="The same twelve figure reads with and without pi-image-compact" width="100%"></p>
 
-The whole story, about 9 minutes with sound:
-
 https://github.com/user-attachments/assets/0c29e6ea-4655-4c62-b5bc-14967bd5dcc7
 
 ```bash

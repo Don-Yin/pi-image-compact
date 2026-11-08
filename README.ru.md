@@ -8,8 +8,6 @@
 
 <p align="center"><img src="assets/loop.gif" alt="The same twelve figure reads with and without pi-image-compact" width="100%"></p>
 
-Вся история, около 9 минут со звуком (на английском):
-
 https://github.com/user-attachments/assets/0c29e6ea-4655-4c62-b5bc-14967bd5dcc7
 
 ```bash
