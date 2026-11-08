@@ -6,6 +6,8 @@
 
 Keeps image-heavy [Pi](https://github.com/earendil-works/pi) sessions small, so a pile of screenshots no longer ends in a 413 "request too large" error.
 
+<p align="center"><img src="assets/loop.gif" alt="The same twelve figure reads with and without pi-image-compact" width="100%"></p>
+
 ```bash
 pi install npm:pi-image-compact
 ```
@@ -18,6 +20,10 @@ Four independent extensions; turn any of them off with `pi config`:
 | `budget.ts` | When a request's images pass 16 MB, replaces the oldest with a short note naming the file, until 8 MB remains. Pi can read the file again. |
 | `prune.ts` | After a compaction, removes the images the model can no longer see from memory and the session file. |
 | `status.ts` | Shows the images in context in the footer, e.g. `⧉ 2 ▮▮▮▯▯▯▯▯ 6.1/16 MB`. |
+
+Image tokens per request and per session, modelled on the 413 session (2.8 MB and 4,784 tokens per figure):
+
+<p align="center"><img src="assets/token-savings.png" alt="Image tokens per request and per session, with and without pi-image-compact" width="100%"></p>
 
 ## Development
 
