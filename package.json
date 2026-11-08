@@ -1,0 +1,51 @@
+{
+	"name": "pi-image-compact",
+	"version": "0.1.0",
+	"description": "Pi extensions that keep screenshot-heavy sessions small: near-lossless WebP, a request image budget, pruning after compaction, and a footer indicator.",
+	"license": "MIT",
+	"author": "Don Yin",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Don-Yin/pi-image-compact.git"
+	},
+	"type": "module",
+	"engines": {
+		"node": ">=22.18"
+	},
+	"files": [
+		"*.ts",
+		"README.md",
+		"LICENSE"
+	],
+	"scripts": {
+		"test": "node --test tests/*.test.ts"
+	},
+	"keywords": [
+		"pi-package",
+		"pi",
+		"images",
+		"webp",
+		"screenshots"
+	],
+	"pi": {
+		"extensions": [
+			"./compress.ts",
+			"./budget.ts",
+			"./prune.ts",
+			"./status.ts"
+		]
+	},
+	"piLocal": {
+		"category": "tools"
+	},
+	"dependencies": {
+		"@jsquash/webp": "^1.5.0",
+		"@silvia-odwyer/photon-node": "^0.3.4"
+	},
+	"peerDependencies": {
+		"@earendil-works/pi-agent-core": "*",
+		"@earendil-works/pi-ai": "*",
+		"@earendil-works/pi-coding-agent": "*",
+		"@earendil-works/pi-tui": "*"
+	}
+}
