@@ -8,6 +8,10 @@
 
 <p align="center"><img src="assets/loop.gif" alt="The same twelve figure reads with and without pi-image-compact" width="100%"></p>
 
+完整的来龙去脉，约 9 分钟，有声音（英文）：
+
+https://github.com/user-attachments/assets/0c29e6ea-4655-4c62-b5bc-14967bd5dcc7
+
 ```bash
 pi install npm:pi-image-compact
 ```
