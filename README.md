@@ -1,5 +1,7 @@
 <p align="center"><img src="assets/banner.png" alt="" width="100%"></p>
 
+<p align="center"><b>English</b> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.es.md">Español</a></p>
+
 # pi-image-compact
 
 Keeps image-heavy [Pi](https://github.com/earendil-works/pi) sessions small, so a pile of screenshots no longer ends in a 413 "request too large" error.
