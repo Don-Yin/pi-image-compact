@@ -1,10 +1,10 @@
 <p align="center"><img src="assets/banner.png" alt="" width="100%"></p>
 
-<p align="center"><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <b>Español</b></p>
+<p align="center"><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <b>Español</b> · <a href="README.ru.md">Русский</a></p>
 
 # pi-image-compact
 
-Mantiene pequeñas las sesiones de [Pi](https://github.com/earendil-works/pi) con muchas imágenes, para que un montón de capturas de pantalla ya no termine en un error 413 "request too large".
+Mantiene pequeñas las sesiones de [Pi](https://github.com/earendil-works/pi) con muchas imágenes, para que un montón de capturas ya no termine en un error 413 "request too large". En una sesión modelada de 12 figuras grandes, cada petición se queda por debajo de 16 MB y la sesión envía más o menos la mitad de tokens de imagen (182k en lugar de 373k). En un conjunto público de 12 capturas, gráficos y fotos, WebP redujo las imágenes un tercio (3.22 → 2.16 MB).
 
 <p align="center"><img src="assets/loop.gif" alt="The same twelve figure reads with and without pi-image-compact" width="100%"></p>
 
@@ -12,16 +12,7 @@ Mantiene pequeñas las sesiones de [Pi](https://github.com/earendil-works/pi) co
 pi install npm:pi-image-compact
 ```
 
-Cuatro extensiones independientes; puedes desactivar cualquiera de ellas con `pi config`:
-
-| Extensión | Qué hace |
-| --- | --- |
-| `compress.ts` | Vuelve a codificar las imágenes PNG como WebP casi sin pérdida, y solo las sustituye si el archivo es más pequeño y su peor bloque de 32×32 se mantiene en 40 dB de PSNR o más. |
-| `budget.ts` | Cuando las imágenes de una petición superan 16 MB, sustituye las más antiguas por una nota breve con el nombre del archivo, hasta que quedan 8 MB. Pi puede volver a leer el archivo. |
-| `prune.ts` | Después de una compactación, elimina de la memoria y del archivo de sesión las imágenes que el modelo ya no puede ver. |
-| `status.ts` | Muestra en la barra inferior las imágenes del contexto, por ejemplo `⧉ 2 ▮▮▮▯▯▯▯▯ 6.1/16 MB`. |
-
-Tokens de imagen por petición y por sesión, modelados sobre la sesión del 413 (2.8 MB y 4.784 tokens por figura):
+Cuatro extensiones independientes; puedes desactivar cualquiera con `pi config` (detalles en inglés): [compress](docs/extensions.md#compress) · [budget](docs/extensions.md#budget) · [prune](docs/extensions.md#prune) · [status](docs/extensions.md#status)
 
 <p align="center"><img src="assets/token-savings.png" alt="Image tokens per request and per session, with and without pi-image-compact" width="100%"></p>
 
@@ -33,7 +24,7 @@ npm install && npm test
 
 ## Contribuir
 
-Todavía estoy aprendiendo, así que si ves una forma mejor de hacer algo de esto, abre un issue o envía un pull request. ¡Gracias!
+Todavía estoy aprendiendo, así que cualquier idea, issue o pull request es muy bienvenido.
 
 ## Licencia
 

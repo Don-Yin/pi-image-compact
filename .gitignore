@@ -1,1 +1,4 @@
 /node_modules/
+# local-only material: videos, plot sources, experiments, repo scripts
+/docs/*
+!/docs/extensions.md
