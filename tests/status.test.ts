@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { MAX_IMAGE_BYTES } from "../shared.ts";
-import imageStatus from "../status.ts";
+import { MAX_IMAGE_BYTES } from "../src/shared.ts";
+import imageStatus from "../src/status.ts";
 
 const image = (bytes: number) => ({ type: "image", data: "x".repeat(bytes), mimeType: "image/png" });
 const text = (value: string) => ({ type: "text", text: value });

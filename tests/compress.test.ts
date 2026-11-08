@@ -5,8 +5,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
 import photon from "@silvia-odwyer/photon-node";
-import { compactImage, worstTilePsnr } from "../compact.ts";
-import imageCompact from "../compress.ts";
+import { compactImage, worstTilePsnr } from "../src/compact.ts";
+import imageCompact from "../src/compress.ts";
 import { createReadToolDefinition } from "@earendil-works/pi-coding-agent";
 
 // Dark terminal-style screenshot: glyph-like strokes in text rows, coloured status squares, faint capture noise
@@ -184,7 +184,7 @@ test("compaction runs off the main thread, and a burst beyond the worker limit q
 test("a worker file replaced while a session runs (another version's reply) keeps the original image", async () => {
 	const dir = mkdtempSync(join(import.meta.dirname, "worker-"));
 	try {
-		copyFileSync(join(import.meta.dirname, "../compress.ts"), join(dir, "compress.ts"));
+		copyFileSync(join(import.meta.dirname, "../src/compress.ts"), join(dir, "compress.ts"));
 		writeFileSync(join(dir, "compact.ts"), `import { parentPort } from "node:worker_threads";\nparentPort!.postMessage({ type: "image", data: "UklGRg==", mimeType: "image/webp" });\n`);
 		const handlers: Record<string, (event: any, ctx: any) => Promise<any>> = {};
 		(await import(join(dir, "compress.ts"))).default({ on: (name: string, handler: any) => { handlers[name] = handler; } });

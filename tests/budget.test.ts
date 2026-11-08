@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import budgetImages, { imageTokens, limitImageBytes } from "../budget.ts";
+import budgetImages, { imageTokens, limitImageBytes } from "../src/budget.ts";
 
 const image = (size: number) => ({ type: "image", data: "x".repeat(size), mimeType: "image/png" });
 const read = (id: string, path: string) => ({ role: "assistant", content: [{ type: "toolCall", id, name: "read", arguments: { path } }] });

@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
 import { SessionManager } from "@earendil-works/pi-coding-agent";
-import pruneSessionImages from "../prune.ts";
+import pruneSessionImages from "../src/prune.ts";
 
 const image = { type: "image", data: "A".repeat(4000), mimeType: "image/png" };
 

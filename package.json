@@ -13,7 +13,7 @@
 		"node": ">=22.18"
 	},
 	"files": [
-		"*.ts",
+		"src/",
 		"README.md",
 		"LICENSE"
 	],
@@ -29,10 +29,10 @@
 	],
 	"pi": {
 		"extensions": [
-			"./compress.ts",
-			"./budget.ts",
-			"./prune.ts",
-			"./status.ts"
+			"./src/compress.ts",
+			"./src/budget.ts",
+			"./src/prune.ts",
+			"./src/status.ts"
 		]
 	},
 	"piLocal": {
