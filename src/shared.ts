@@ -8,9 +8,17 @@ import type { AgentMessage } from "@earendil-works/pi-agent-core";
 export const MAX_IMAGE_BYTES = 16_000_000;
 export const TARGET_IMAGE_BYTES = 8_000_000;
 
-/** The one text an image becomes; a path lets the model read the file again. */
-export const imagePlaceholder = (reason: string, path?: string) =>
-	`[image ${reason}.${path ? ` read ${path} again if you still need it.` : ""}]`;
+export type Part = { type: string; data?: string; mimeType?: string; text?: string };
+
+/** The parts of a message that can carry images (user input or a tool result), else undefined. */
+export const imageParts = (message: AgentMessage): Part[] | undefined =>
+	(message.role === "user" || message.role === "toolResult") && Array.isArray(message.content) ? (message.content as Part[]) : undefined;
+
+/** The one text an image in `message` becomes; a `read` path lets the model read the file again. */
+export function imagePlaceholder(reason: string, message: AgentMessage, paths: Map<string, string>): string {
+	const path = message.role === "toolResult" ? paths.get(message.toolCallId) : undefined;
+	return `[image ${reason}.${path ? ` read ${path} again if you still need it.` : ""}]`;
+}
 
 /** Paths of `read` tool calls by call id, so an image tool result can name its file. */
 export function readPaths(messages: AgentMessage[]): Map<string, string> {

@@ -1,7 +1,7 @@
 import { closeSync, openSync, readSync, renameSync, writeSync } from "node:fs";
 import { StringDecoder } from "node:string_decoder";
 import type { ExtensionAPI, SessionEntry } from "@earendil-works/pi-coding-agent";
-import { imagePlaceholder, readPaths } from "./shared.ts";
+import { imageParts, imagePlaceholder, readPaths } from "./shared.ts";
 
 /**
  * Images before a compaction never reach the model again, yet Pi keeps them in the session file
@@ -15,13 +15,10 @@ export function pruneImages(branch: SessionEntry[], stopId: string): Set<string>
 	const paths = readPaths(before.flatMap(entry => (entry.type === "message" ? [entry.message] : [])));
 	for (const entry of before) {
 		if (entry.type !== "message") continue;
-		const { message } = entry;
-		if ((message.role !== "user" && message.role !== "toolResult") || !Array.isArray(message.content)) continue;
-		const content = message.content as { type: string; text?: string }[];
-		content.forEach((part, index) => {
+		const content = imageParts(entry.message);
+		content?.forEach((part, index) => {
 			if (part.type !== "image") return;
-			content[index] = { type: "text", text: imagePlaceholder("removed after compaction",
-				message.role === "toolResult" ? paths.get(message.toolCallId) : undefined) };
+			content[index] = { type: "text", text: imagePlaceholder("removed after compaction", entry.message, paths) };
 			changed.add(entry.id);
 		});
 	}

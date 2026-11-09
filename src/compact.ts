@@ -9,7 +9,7 @@ import photon, { type PhotonImage } from "@silvia-odwyer/photon-node";
 // Worst 32x32 tile must stay above this PSNR, so damage to a line of small text cannot hide behind flat UI chrome.
 const MIN_TILE_PSNR = 40;
 const TILE = 32;
-// Near-lossless WebP: on real screenshots about a quarter of Pi's PNG, worst tile about 47 dB.
+// Near-lossless WebP: on the public test screenshots the worst tile stays around 47-48 dB.
 const WEBP = { lossless: 1, near_lossless: 60, method: 4 };
 
 // Node supports WASM SIMD, so the encoder loads its SIMD glue; hand it the matching binary.

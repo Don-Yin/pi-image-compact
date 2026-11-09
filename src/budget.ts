@@ -1,9 +1,7 @@
 import type { AgentMessage } from "@earendil-works/pi-agent-core";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { getImageDimensions } from "@earendil-works/pi-tui";
-import { imagePlaceholder, MAX_IMAGE_BYTES, readPaths, TARGET_IMAGE_BYTES } from "./shared.ts";
-
-type Part = { type: string; data?: string; mimeType?: string };
+import { imageParts, imagePlaceholder, MAX_IMAGE_BYTES, type Part, readPaths, TARGET_IMAGE_BYTES } from "./shared.ts";
 
 /**
  * Claude's visual tokens, an estimate for any model: one per 28×28 patch, at most 4,784 per image
@@ -22,13 +20,11 @@ const imageKey = (message: AgentMessage, index: number) =>
  */
 export function limitImageBytes(messages: AgentMessage[], dropped: Map<string, number>, max = MAX_IMAGE_BYTES, target = TARGET_IMAGE_BYTES): AgentMessage[] | undefined {
 	const images: { key: string; bytes: number; part: Part }[] = [];
-	for (const message of messages) {
-		if ((message.role === "user" || message.role === "toolResult") && Array.isArray(message.content))
-			(message.content as Part[]).forEach((part, index) => {
-				const key = imageKey(message, index);
-				if (part.type === "image" && !dropped.has(key)) images.push({ key, bytes: part.data?.length ?? 0, part });
-			});
-	}
+	for (const message of messages)
+		imageParts(message)?.forEach((part, index) => {
+			const key = imageKey(message, index);
+			if (part.type === "image" && !dropped.has(key)) images.push({ key, bytes: part.data?.length ?? 0, part });
+		});
 	let total = images.reduce((sum, image) => sum + image.bytes, 0);
 	if (total > max)
 		for (const image of images) {
@@ -39,12 +35,10 @@ export function limitImageBytes(messages: AgentMessage[], dropped: Map<string, n
 	const paths = readPaths(messages);
 	let changed = false;
 	const next = messages.map(message => {
-		if ((message.role !== "user" && message.role !== "toolResult") || !Array.isArray(message.content)) return message;
-		const parts = message.content as Part[];
-		if (!parts.some((part, index) => part.type === "image" && dropped.has(imageKey(message, index)))) return message;
+		const parts = imageParts(message);
+		if (!parts?.some((part, index) => part.type === "image" && dropped.has(imageKey(message, index)))) return message;
 		changed = true;
-		const placeholder = imagePlaceholder("omitted to keep the request under the provider size limit",
-			message.role === "toolResult" ? paths.get(message.toolCallId) : undefined);
+		const placeholder = imagePlaceholder("omitted to keep the request under the provider size limit", message, paths);
 		return {
 			...message,
 			content: parts.map((part, index) =>
