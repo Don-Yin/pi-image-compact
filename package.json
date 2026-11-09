@@ -1,6 +1,6 @@
 {
 	"name": "pi-image-compact",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Pi extensions that keep screenshot-heavy sessions small: near-lossless WebP, a request image budget, pruning after compaction, and a footer indicator.",
 	"license": "MIT",
 	"author": "Don Yin",
@@ -33,7 +33,9 @@
 			"./src/budget.ts",
 			"./src/prune.ts",
 			"./src/status.ts"
-		]
+		],
+		"image": "https://raw.githubusercontent.com/Don-Yin/pi-image-compact/main/assets/loop.gif",
+		"video": "https://github.com/user-attachments/assets/0c29e6ea-4655-4c62-b5bc-14967bd5dcc7"
 	},
 	"piLocal": {
 		"category": "tools"

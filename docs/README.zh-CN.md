@@ -10,6 +10,8 @@
 
 https://github.com/user-attachments/assets/0c29e6ea-4655-4c62-b5bc-14967bd5dcc7
 
+也可以在 [YouTube](https://youtu.be/WFU_k1zRBbI) 上观看。
+
 ```bash
 pi install npm:pi-image-compact
 ```

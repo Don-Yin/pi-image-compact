@@ -10,6 +10,8 @@ Mantiene pequeñas las sesiones de [Pi](https://github.com/earendil-works/pi) co
 
 https://github.com/user-attachments/assets/0c29e6ea-4655-4c62-b5bc-14967bd5dcc7
 
+También en [YouTube](https://youtu.be/WFU_k1zRBbI).
+
 ```bash
 pi install npm:pi-image-compact
 ```
