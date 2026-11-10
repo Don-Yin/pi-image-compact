@@ -8,7 +8,7 @@
 
 <p align="center"><img src="../assets/loop.gif" alt="The same twelve figure reads with and without pi-image-compact" width="100%"></p>
 
-https://github.com/user-attachments/assets/0c29e6ea-4655-4c62-b5bc-14967bd5dcc7
+https://github.com/user-attachments/assets/b0d5654c-c6a1-4b85-a23a-dcf7adc2e0d2
 
 Также на [YouTube](https://youtu.be/WFU_k1zRBbI).
 
