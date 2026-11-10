@@ -1,6 +1,6 @@
 <p align="center"><img src="../assets/banner.png" alt="" width="100%"></p>
 
-<p align="center"><a href="../README.md">English</a> · <b>简体中文</b> · <a href="README.es.md">Español</a> · <a href="README.ru.md">Русский</a></p>
+<p align="center"><a href="../README.md">English</a> · <b>简体中文</b> · <a href="README.es.md">Español</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a></p>
 
 # pi-image-compact
 
