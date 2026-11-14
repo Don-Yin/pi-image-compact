@@ -15,9 +15,9 @@ export default function (pi: ExtensionAPI) {
 					bytes += part.data?.length ?? 0;
 				}
 		if (!count) return ctx.ui.setStatus("image-compact", undefined);
-		// Eight cells like the context bar: how far the images are from the trim limit.
+		// ASCII cells keep the image budget readable without special font coverage.
 		const filled = Math.min(8, Math.round((bytes / MAX_IMAGE_BYTES) * 8));
-		const size = `${"▮".repeat(filled)}${"▯".repeat(8 - filled)} ${(bytes / 1e6).toFixed(1)}/${MAX_IMAGE_BYTES / 1e6} MB`;
-		ctx.ui.setStatus("image-compact", `⧉ ${count} ${bytes > MAX_IMAGE_BYTES * 0.75 ? ctx.ui.theme.fg("warning", size) : size}`);
+		const size = `[${"#".repeat(filled)}${".".repeat(8 - filled)}] ${(bytes / 1e6).toFixed(1)}/${MAX_IMAGE_BYTES / 1e6} MB`;
+		ctx.ui.setStatus("image-compact", `${count} image${count === 1 ? "" : "s"} ${bytes > MAX_IMAGE_BYTES * 0.75 ? ctx.ui.theme.fg("warning", size) : size}`);
 	});
 }

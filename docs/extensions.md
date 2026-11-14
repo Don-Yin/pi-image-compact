@@ -33,13 +33,13 @@ WebP saves bytes, not tokens: the model still sees the same number of pixels.
 `status.ts` shows the images in context in Pi's footer:
 
 ```text
-⧉ 2 ▮▮▮▯▯▯▯▯ 6.1/16 MB (−8.0 MB) 10 trimmed ≈ 17k tok
+2 images [###.....] 6.1/16 MB (−8.0 MB) 10 trimmed ≈ 17k tok
 ```
 
 | Part | Meaning |
 | --- | --- |
-| `⧉ 2` | images in the current request |
-| `▮▮▮▯▯▯▯▯ 6.1/16 MB` | their size against the 16 MB limit |
+| `2 images` | images in the current request |
+| `[###.....] 6.1/16 MB` | their size against the 16 MB limit; `#` is used, `.` is free |
 | `(−8.0 MB)` | bytes saved by compress |
 | `10 trimmed` | images budget replaced with a note |
 | `≈ 17k tok` | estimated image tokens those notes saved |

@@ -30,7 +30,8 @@ test("counts only user and tool-result images, using base64 bytes without changi
 	const before = structuredClone(messages);
 	assert.deepEqual(Object.keys(handlers).sort(), ["context_with_system", "session_start"]);
 	assert.equal(handlers.context_with_system({ messages }, ctx), undefined);
-	assert.deepEqual(statuses, [["image-compact", "⧉ 6 ▮▯▯▯▯▯▯▯ 2.5/16 MB"]]);
+	assert.deepEqual(statuses, [["image-compact", "6 images [#.......] 2.5/16 MB"]]);
+	assert.doesNotMatch(statuses[0][1]!, /[^\x20-\x7e]/, "the image count and budget need no special glyphs");
 	assert.deepEqual(colors, []);
 	assert.deepEqual(messages, before);
 });
@@ -39,9 +40,9 @@ test("only sizes above 75 percent receive the warning color", () => {
 	for (const extra of [0, 1]) {
 		const { handlers, statuses, colors, ctx } = setup();
 		handlers.context_with_system({ messages: [{ role: "user", content: [image(MAX_IMAGE_BYTES * 0.75 + extra)] }] }, ctx);
-		const size = "▮▮▮▮▮▮▯▯ 12.0/16 MB";
+		const size = "[######..] 12.0/16 MB";
 		assert.deepEqual(colors, extra ? [["warning", size]] : []);
-		assert.equal(statuses[0][1], `⧉ 1 ${extra ? `<warning>${size}</warning>` : size}`);
+		assert.equal(statuses[0][1], `1 image ${extra ? `<warning>${size}</warning>` : size}`);
 	}
 });
 
